@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet"><title>Shah | AURA EDITZ</title>
+<style>
+:root{
+  --bg:#141414; --text:#ffffff; --muted:rgba(255,255,255,.66);
+  --accent:#89e900; --on-accent:#141414;
+  --glass:rgba(255,255,255,.07); --glass-strong:rgba(255,255,255,.12);
+  --border:rgba(255,255,255,.14); --shadow:0 10px 40px rgba(0,0,0,.35);
+}
+[data-theme="light"]{
+  --bg:#eef3e6; --text:#141414; --muted:rgba(20,20,20,.7);
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.8);
+  --border:rgba(20,20,20,.12); --shadow:0 10px 40px rgba(60,80,20,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI",Inter,system-ui,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;
+  transition:background .4s,color .4s;overflow-x:hidden;
+}
+body::before,body::after{
+  content:"";position:fixed;width:520px;height:520px;border-radius:50%;
+  filter:blur(90px);opacity:.22;z-index:-1;pointer-events:none;
+  background:var(--accent);animation:drift 18s ease-in-out infinite alternate;
+}
+body::before{top:-160px;left:-120px}
+body::after{bottom:-180px;right:-120px;animation-delay:-9s}
+@keyframes drift{to{transform:translate(120px,80px) scale(1.15)}}
+
+.container{max-width:1100px;margin:0 auto;padding:0 22px}
+section{padding:90px 0}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em}
+h2{font-size:2rem;margin-bottom:10px}
+h2 span{color:var(--accent)}
+.sub{color:var(--muted);margin-bottom:34px}
+
+.glass{
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-radius:24px;box-shadow:var(--shadow);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;
+  padding:12px 24px;border-radius:999px;font-weight:700;font-size:.95rem;
+  background:var(--accent);color:var(--on-accent);text-decoration:none;
+  box-shadow:0 6px 22px rgba(137,233,0,.35);transition:transform .25s,box-shadow .25s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(137,233,0,.5)}
+.btn.ghost{background:var(--glass-strong);color:var(--text);box-shadow:none;border:1px solid var(--border)}
+
+/* Header */
+header{position:fixed;top:16px;left:0;right:0;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px 10px 18px;border-radius:999px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--text)}
+.brand img{height:38px;width:38px;object-fit:contain;border-radius:10px}
+.links{display:flex;gap:18px;align-items:center}
+.links a{color:var(--text);text-decoration:none;font-size:.9rem;opacity:.8}
+.links a:hover{opacity:1;color:var(--accent)}
+.theme-btn{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+  background:var(--glass-strong);cursor:pointer;font-size:1.1rem;color:var(--text);
+}
+
+
+/* Liquid icon */
+.liquid{
+  width:62px;height:62px;display:grid;place-items:center;font-size:1.5rem;
+  background:linear-gradient(135deg,var(--accent),rgba(137,233,0,.35));
+  color:var(--on-accent);box-shadow:0 8px 24px rgba(137,233,0,.35);
+  animation:morph 8s ease-in-out infinite;
+}
+@keyframes morph{
+  0%,100%{border-radius:42% 58% 63% 37% / 41% 44% 56% 59%}
+  33%{border-radius:58% 42% 38% 62% / 49% 62% 38% 51%}
+  66%{border-radius:46% 54% 42% 58% / 62% 36% 64% 38%}
+}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:110px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.tag{display:inline-block;padding:6px 16px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--border);font-size:.85rem;margin-bottom:18px}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.05}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{color:var(--muted);margin:18px 0 28px;max-width:520px;font-size:1.05rem}
+.hero-card{padding:34px;text-align:center}
+.hero-card img{width:150px;height:150px;object-fit:contain;border-radius:30px;margin-bottom:14px;background:#141414}
+.hero-card .role{font-weight:700;color:var(--accent);margin-top:6px}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero-card{order:-1}}
+
+/* Profile */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.profile-card{padding:30px}
+.profile-card h3{margin:14px 0 8px;font-size:1.15rem}
+.profile-card p{color:var(--muted);font-size:.95rem}
+.social{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.social a{text-decoration:none}
+
+/* Portfolio */
+.work{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.work-item{overflow:hidden;transition:transform .35s}
+.work-item:hover{transform:translateY(-8px) scale(1.01)}
+.work-thumb{
+  aspect-ratio:4/3;display:grid;place-items:center;position:relative;
+  background:linear-gradient(135deg,#1f2a06,#0b0b0b 60%,#2c3d05);
+}
+.work-thumb::after{content:"Add project image";position:absolute;bottom:10px;font-size:.72rem;color:var(--muted)}
+.work-thumb span{font-weight:900;font-size:1.6rem;color:var(--accent);text-align:center;padding:10px}
+.work-body{padding:18px 20px 22px}
+.work-body h3{font-size:1.05rem}
+.work-body p{color:var(--muted);font-size:.9rem}
+
+/* Tips */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.tip{padding:26px}
+.tip .num{font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.tip h3{margin:12px 0 6px;font-size:1.02rem}
+.tip p{color:var(--muted);font-size:.92rem}
+
+/* Tools */
+.tools-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.tab{padding:10px 18px;border-radius:999px;border:1px solid var(--border);background:var(--glass);color:var(--text);cursor:pointer;font-weight:600;font-size:.9rem}
+.tab.active{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.tool{display:none;padding:32px}
+.tool.active{display:block}
+.tool h3{font-size:1.3rem;margin-bottom:6px}
+.tool > p{color:var(--muted);margin-bottom:22px;font-size:.92rem}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:180px}
+.field label{font-size:.85rem;color:var(--muted)}
+input[type=text],input[type=date],input[type=number],select,textarea{
+  width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--border);
+  background:var(--glass-strong);color:var(--text);font:inherit;outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=color]{width:54px;height:46px;border:none;background:none;cursor:pointer}
+input[type=file]{color:var(--muted);font-size:.9rem}
+.out{margin-top:18px;padding:18px;border-radius:18px;background:var(--glass-strong);border:1px solid var(--border);word-break:break-all;font-size:1.05rem}
+.big{font-size:1.4rem;font-weight:800;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+.stat{padding:16px;text-align:center;border-radius:18px;background:var(--glass-strong);border:1px solid var(--border)}
+.stat b{display:block;font-size:1.6rem;color:var(--accent)}
+.stat small{color:var(--muted)}
+canvas{max-width:100%;height:auto;border-radius:18px;margin-top:16px;border:1px solid var(--border);background:#0b0b0b}
+.meter{height:8px;border-radius:99px;background:var(--glass-strong);overflow:hidden;margin-top:12px}
+.meter div{height:100%;width:0;background:var(--accent);transition:width .3s}
+.copy{margin-top:12px}
+
+/* Contact */
+.contact{text-align:center;padding:90px 0}
+.contact .sub{max-width:520px;margin:0 auto 26px}
+.contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+footer{padding:30px 0 40px;text-align:center;color:var(--muted);font-size:.88rem}
+footer b{color:var(--accent)}
+
+.work-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.work-thumb::after{content:none}
+.work-thumb img ~ span{display:none}
+.meta{color:var(--accent)!important;font-size:.8rem!important;font-weight:600;margin-bottom:8px}
+.btn.small{padding:9px 18px;font-size:.85rem;margin-top:10px}
+.soon-card{margin-top:30px;padding:26px;text-align:center}
+.soon-card p{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+.project{padding:70px 0;border-top:1px solid var(--border)}
+.project-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.project-media img{width:100%;border-radius:24px;border:1px solid var(--border);box-shadow:var(--shadow);display:block;background:#0b0b0b}
+.project-media .pair{margin-top:14px}
+.project-media .pair img{max-height:300px;object-fit:contain;padding:20px}
+.project-info{padding:32px}
+.project-info p{color:var(--muted);margin-bottom:12px}
+.project-info p.meta{color:var(--accent);font-weight:600;font-size:.85rem}
+.project-info .tag{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--border);font-size:.8rem;margin-bottom:14px;color:var(--text)}
+.soon-wrap{padding:40px 0 20px}
+.soon-card{padding:26px;text-align:center}
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:opacity .6s}
+#intro.hide{opacity:0;pointer-events:none}
+.intro-box{padding:44px 36px;text-align:center;max-width:440px;margin:20px}
+.intro-box img{width:110px;height:110px;object-fit:contain;margin-bottom:14px;border-radius:24px}
+.intro-box h1{font-size:1.9rem}
+.intro-box p{color:var(--muted);margin:10px 0 24px}
+@media(max-width:800px){.project-grid{grid-template-columns:1fr}}
+
+.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.14em;font-size:.78rem;text-transform:uppercase;margin-bottom:12px}
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center}
+.about-grid h2 span{color:var(--accent)}
+#about,#services,#community{padding:80px 0}
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.social-btn{display:flex;align-items:center;gap:14px;padding:20px 22px;text-decoration:none;color:var(--text);font-weight:700;transition:transform .25s,border-color .25s}
+.social-btn:hover{transform:translateY(-4px);border-color:var(--accent)}
+.social-btn span{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);font-weight:900}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-form{padding:30px;display:flex;flex-direction:column;gap:16px}
+.contact-form .field{min-width:0}
+.contact-form .btn{align-self:stretch;justify-content:center;margin-top:6px}
+#contact{padding:80px 0}
+@media(max-width:800px){.about-grid,.contact-grid{grid-template-columns:1fr}}
+
+.nav{gap:12px}
+.links{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;justify-content:flex-start;white-space:nowrap}
+.links::-webkit-scrollbar{display:none}
+.links a{flex:none;font-size:.88rem}
+.brand{flex:none;white-space:nowrap}
+#intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle at 30% 20%,#243a06,#0a0a0a 70%);
+  clip-path:circle(150% at 50% 50%);transition:clip-path 1.2s cubic-bezier(.7,0,.2,1)}
+[data-theme="light"] #intro{background:radial-gradient(circle at 30% 20%,#e3f7bf,#eef3e6 70%)}
+#intro.exit{clip-path:circle(0% at 50% 50%)}
+#intro.gone{display:none}
+#burst{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.intro-inner{position:relative;text-align:center;padding:20px;animation:rise 1s ease both;transition:transform .6s,opacity .6s}
+.intro-logo{width:96px;height:96px;object-fit:contain;border-radius:26px;box-shadow:0 0 40px rgba(137,233,0,.45);animation:float 4s ease-in-out infinite}
+.intro-title{font-size:clamp(2.6rem,8vw,5.2rem);font-weight:900;letter-spacing:-.03em;margin:18px 0 6px;color:var(--text)}
+.intro-title span{background:linear-gradient(90deg,var(--accent),#ffffff,var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3s linear infinite}
+.intro-sub{color:var(--muted);letter-spacing:.06em;margin-bottom:34px}
+.enter-btn{padding:18px 56px;border-radius:999px;border:none;background:var(--accent);color:#141414;font-weight:800;font-size:1.05rem;cursor:pointer;animation:pulse 2s infinite;transition:transform .25s}
+.enter-btn:hover{transform:scale(1.06)}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes shine{to{background-position:200% center}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(137,233,0,.6)}70%{box-shadow:0 0 0 24px rgba(137,233,0,0)}100%{box-shadow:0 0 0 0 rgba(137,233,0,0)}}
+
+/* ===== v6 modern layer ===== */
+body{font-family:Sora,"Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:Sora,"Segoe UI",sans-serif;font-weight:800}
+h2{font-size:clamp(2rem,4.2vw,3rem);line-height:1.1}
+section{padding:110px 0}
+.glass{border-radius:30px;border:1px solid var(--border)}
+.profile-card,.tip,.work-item{transition:transform .35s,border-color .35s}
+.profile-card:hover,.tip:hover{transform:translateY(-6px);border-color:var(--accent)}
+.liquid svg{width:28px;height:28px}
+.liquid{width:72px;height:72px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.8rem);letter-spacing:-.03em}
+.hero h1 em{color:var(--accent);font-style:normal;text-shadow:0 0 30px rgba(137,233,0,.35)}
+.bg-tools{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bgi{position:absolute;width:64px;height:64px;color:var(--accent);opacity:.2}
+.bgi svg{width:100%;height:100%}
+.bgi.a{animation:floatA 26s ease-in-out infinite alternate}
+.bgi.b{animation:floatB 32s ease-in-out infinite alternate}
+@keyframes floatA{from{transform:translate(0,0) rotate(0)}to{transform:translate(60px,-40px) rotate(14deg)}}
+@keyframes floatB{from{transform:translate(0,0) rotate(0)}to{transform:translate(-50px,50px) rotate(-12deg)}}
+#intro{background:var(--bg)!important;clip-path:none!important;transition:opacity .9s ease,transform .9s ease!important}
+#intro.leave{opacity:0;transform:translateY(-30px);pointer-events:none}
+.ib{position:absolute;width:38vw;max-width:480px;opacity:.5;border-radius:28px;overflow:hidden;filter:blur(1px) saturate(1.15);animation:ibDrift 22s ease-in-out infinite alternate}
+.ib img{width:100%;display:block}
+.ib1{left:-4%;top:6%}.ib2{right:-3%;top:10%;animation-duration:26s}
+.ib3{left:6%;bottom:-4%;animation-duration:24s}.ib4{right:4%;bottom:6%;animation-duration:20s}
+@keyframes ibDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(34px,-44px) scale(1.07)}}
+.intro-glass{position:relative;z-index:2;max-width:480px;width:calc(100% - 40px);padding:50px 36px;text-align:center;border-radius:36px;background:var(--glass);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%);border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise .9s ease both}
+.intro-title{font-size:clamp(2.8rem,9vw,5.4rem);font-weight:800;letter-spacing:-.04em;margin:18px 0 8px;color:var(--text)}
+.intro-title span{color:var(--accent);background:none;-webkit-background-clip:border-box;background-clip:border-box;-webkit-text-fill-color:var(--accent);animation:none;text-shadow:0 0 36px rgba(137,233,0,.55)}
+.intro-sub{font-size:.95rem;color:var(--muted);letter-spacing:.02em;margin-bottom:36px}
+.go-btn{display:inline-flex;align-items:center;gap:16px;padding:12px 12px 12px 34px;border:none;border-radius:999px;background:var(--accent);color:#141414;font:700 1.05rem Sora,sans-serif;cursor:pointer;box-shadow:0 14px 40px rgba(137,233,0,.4);transition:transform .3s}
+.go-btn:hover{transform:translateY(-3px)}
+.go-ico{width:50px;height:50px;display:grid;place-items:center;background:#141414;color:var(--accent);animation:nudge 1.6s ease-in-out infinite,morph 6s ease-in-out infinite}
+.go-ico svg{width:24px;height:24px}
+@keyframes nudge{0%,100%{transform:translateX(-3px)}50%{transform:translateX(7px)}}
+.calli-card{padding:40px 30px;text-align:center;margin-bottom:26px}
+.calli-card p{color:var(--muted);font-size:.9rem;margin-top:10px}
+.calli{font-family:Amiri,"Noto Naskh Arabic",serif;font-size:clamp(2.8rem,8vw,5.4rem);line-height:1.6;background:linear-gradient(90deg,var(--accent),#ffffff 50%,var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+.eyebrow{font-family:Sora,sans-serif}
+@media(max-width:800px){.intro-glass{padding:36px 22px}.ib{width:60vw}}
+
+.principle-card{padding:44px 40px;max-width:900px;margin:0 auto;text-align:center}
+.hadith-ar{font-family:Amiri,serif;font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.9;direction:rtl;color:var(--accent);margin:14px 0 6px}
+.hadith-en{color:var(--text);font-size:1rem;margin-bottom:4px}
+.src{font-size:.8rem;color:var(--muted);margin-bottom:22px}
+.ruling{color:var(--text);border-top:1px solid var(--border);padding-top:24px;margin-top:8px;font-size:1rem}
+.fatwa{color:var(--accent);font-weight:700;margin-top:14px}
+#principles{padding:90px 0}
+
+#hub{padding:90px 0}
+.hub-icons{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:10px 0 44px}
+.hub-btn{background:var(--glass);border:1px solid var(--border);border-radius:28px;padding:20px 26px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;color:var(--text);font-family:Sora,sans-serif;font-weight:700;min-width:130px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:transform .3s,border-color .3s,box-shadow .3s}
+.hub-btn .liquid{width:60px;height:60px}
+.hub-btn:hover{transform:translateY(-5px)}
+.hub-btn.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 18px 44px rgba(137,233,0,.28)}
+.hub-panel{display:none;padding:6px 0}
+.hub-panel.active{display:block;animation:rise .6s ease both}
+.about-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.photo-card{padding:14px;overflow:hidden}
+.photo-card img{width:100%;border-radius:22px;display:block}
+.lead-text{color:var(--muted);margin:14px 0 22px;font-size:1.02rem}
+.note-card{padding:24px 26px;font-size:.93rem}
+.note-card p{color:var(--text);margin-bottom:12px}
+.principle-card{padding:44px 40px;max-width:900px;margin:0 auto;text-align:center}
+@media(max-width:800px){.about-wrap{grid-template-columns:1fr}}
+
+.stance{font-size:clamp(1.2rem,2.6vw,1.6rem);font-weight:700;color:var(--accent);margin:6px 0 34px}
+.p-list{display:grid;gap:18px}
+.p-card{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 28px}
+.p-card h3{font-size:1.2rem;margin:8px 0 6px}
+.p-card p{color:var(--muted);font-size:.95rem}
+.p-tag{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--border);font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.dots-btn{width:54px;height:54px;flex:none;border-radius:50%;border:1px solid var(--border);background:var(--glass-strong);display:grid;place-items:center;cursor:pointer;transition:transform .25s,border-color .25s}
+.dots-btn:hover{transform:scale(1.08);border-color:var(--accent)}
+.dots{display:flex;gap:5px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--accent);display:block}
+.detail-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.detail-overlay.open{display:flex;animation:rise .4s ease both}
+.detail-box{max-width:640px;width:100%;max-height:86vh;overflow:auto;padding:40px 36px;position:relative;background:var(--bg)}
+.detail-box h3{font-size:1.5rem;margin:12px 0 16px}
+.detail-box p{margin-bottom:12px;color:var(--text)}
+.detail-close{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--glass-strong);color:var(--text);font-size:1.5rem;cursor:pointer;line-height:1}
+#principles{padding:90px 0}
+@media(max-width:600px){.p-card{padding:22px}}
+
+#principles{padding:130px 0 20px}
+.top-stance{text-align:center}
+.top-stance .stance{margin:0 0 26px}
+.top-stance .p-card{max-width:760px;margin:0 auto;padding:30px 34px;text-align:center;display:block}
+.top-stance .p-card .src{margin-top:10px}
+.dots-wrap{display:flex;justify-content:center;margin-top:24px}
+
+.hero{min-height:auto;padding-top:130px;padding-bottom:40px}
+#principles{padding:20px 0 60px}
+.hadith-ur{font-family:Amiri,"Noto Naskh Arabic",serif;font-size:1.2rem;line-height:1.9;direction:rtl;text-align:right;color:var(--text);margin-bottom:14px}
+.detail-box h3{margin-top:24px}
+.fatwa-img{width:100%;border-radius:18px;border:1px solid var(--border);margin:12px 0 18px;background:#fff}
+</style>
+</head>
+<body>
+<div id="intro">
+  <div class="ib ib1"><img src="images/nahlivah-banner.png" alt=""></div>
+  <div class="ib ib2"><img src="images/quran-dars-poster.jpg" alt=""></div>
+  <div class="ib ib3"><img src="images/phentoms-logo.png" alt=""></div>
+  <div class="ib ib4"><img src="images/fahm-e-deen-poster.png" alt=""></div>
+  <div class="intro-glass">
+    <img class="intro-logo" src="aura_editz_logo.png" alt="AURA EDITZ logo" onerror="this.style.display='none'">
+    <h1 class="intro-title">I am <span>Shah</span></h1>
+    <p class="intro-sub">Graphic Designer · Creative Director · AURA EDITZ</p>
+    <button class="go-btn" id="enterBtn"><span>Let's Go</span><i class="go-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></i></button>
+  </div>
+</div>
+
+<div class="bg-tools" aria-hidden="true"><span class="bgi a" style="left:6%;top:12%;animation-duration:26s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></span><span class="bgi b" style="left:88%;top:18%;animation-duration:30s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span class="bgi a" style="left:18%;top:70%;animation-duration:24s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></span><span class="bgi b" style="left:80%;top:62%;animation-duration:28s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="bgi a" style="left:50%;top:8%;animation-duration:32s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3-3.5 3H16a2 2 0 0 0-1 3.7c.6.4.6 1.3 0 1.8A2 2 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></svg></span><span class="bgi b" style="left:36%;top:86%;animation-duration:27s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></span><span class="bgi a" style="left:94%;top:90%;animation-duration:34s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></span><span class="bgi b" style="left:4%;top:44%;animation-duration:29s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span class="bgi a" style="left:64%;top:40%;animation-duration:31s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></span><span class="bgi b" style="left:28%;top:30%;animation-duration:25s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="bgi a" style="left:72%;top:84%;animation-duration:33s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3-3.5 3H16a2 2 0 0 0-1 3.7c.6.4.6 1.3 0 1.8A2 2 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></svg></span><span class="bgi b" style="left:56%;top:62%;animation-duration:26s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></span></div>
+<header>
+  <nav class="container">
+    <div class="nav glass">
+      <a href="#home" class="brand"><img src="aura_editz_logo.png" alt="AURA EDITZ logo" onerror="this.style.display='none'">AURA EDITZ</a>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#hub" data-panel="about">About</a>
+        <a href="#principles">Principles</a>
+        <a href="#hub" data-panel="profile">Profile</a>
+        <a href="#hub" data-panel="services">Services</a>
+        <a href="#quran">Explore</a>
+        <a href="#other">Other Works</a>
+        <a href="#tips">Tips</a>
+        <a href="#community">Community</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact" class="keep">Contact</a>
+      </div>
+      <button class="theme-btn" id="themeBtn" title="Toggle dark/light mode" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- HERO / INTRO -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">Available for freelance work</span>
+      <h1>Hi, I'm <em>Shah</em></h1>
+      <p class="lead">Graphic Designer & Creative Director. I design complete brands: name, logo, theme, colours, typography and every touchpoint. I am the founder of AURA EDITZ.</p>
+      <div class="row">
+        <a href="#work" class="btn">View Work →</a>
+        <a href="#contact" class="btn ghost">Let's Talk</a>
+      </div>
+    </div>
+    <div class="glass hero-card">
+      <img src="aura_editz_logo.png" alt="AURA EDITZ" onerror="this.outerHTML='<div class=liquid style=margin:auto>AE</div>'">
+      <h3>AURA EDITZ</h3>
+      <p class="role">Graphic Designer · Creative Director</p>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:8px">Complete Brand Design · Logos · Themes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="container top-stance">
+    <div class="glass p-card">
+      <span class="p-tag">Hadith</span>
+      <p class="hadith-en">"The people who will be punished most severely on the Day of Resurrection are the image makers."</p>
+      <p class="src">Sahih al-Bukhari and Sahih Muslim</p>
+    </div>
+    <p class="stance">I do not make pictures, and I apologise for that.</p>
+    <div class="dots-wrap">
+      <button class="dots-btn" id="openDetail" aria-label="Read full hadith and details"><span class="dots"><i></i><i></i><i></i></span></button>
+    </div>
+  </div>
+</section>
+
+<template id="t-main">
+  <span class="p-tag">Hadith</span>
+  <p class="hadith-ar">إِنَّ أَشَدَّ النَّاسِ عَذَابًا يَوْمَ الْقِيَامَةِ الْمُصَوِّرُونَ</p>
+  <p class="hadith-en">"The people who will be punished most severely on the Day of Resurrection are the image makers."</p>
+  <p class="src">Sahih al-Bukhari and Sahih Muslim</p>
+  <h3>فتویٰ · Fatwa</h3>
+  <img class="fatwa-img" src="images/fatwa-6688.jpg" alt="Fatwa No. 6688, Darul Ifta wal Tahqeeq, Jamia Darul Taqwa, Lahore">
+  <p class="hadith-ur">دارالافتاء والتحقیق، جامعہ دارالتقویٰ چوبرجی پارک لاہور، فتویٰ نمبر 6688 (یکم اپریل 2019): موجودہ اہلِ علم کا اس بارے میں اختلاف ہے۔ ادارے کی تحقیق کے مطابق موبائل کیمرے سے جاندار کی تصویر لینا بھی ناجائز ہے، اور تصویر بنانے والے کو تصاویر کے متعلق احادیث میں وارد ہونے والا سخت گناہ ملے گا۔</p>
+  <p class="hadith-en">Darul Ifta wal Tahqeeq, Jamia Darul Taqwa, Chowbarji Park, Lahore. Fatwa No. 6688, 1 April 2019. Scholars differ on this matter. According to the institution's research, taking a picture of a living being with a mobile camera is also impermissible, and the one who makes such a picture will incur the severe sin mentioned in the ahadith about pictures.</p>
+  <h3>نوٹ · Note</h3>
+  <p class="hadith-ur">جامعہ دارالتقویٰ لاہور کے فتوے کے مطابق چہرے کے تین نقوش ہیں: آنکھیں، ناک اور ہونٹ۔ ان میں سے اگر کوئی دو عضو نہ ہوں تو شکل یا چہرہ تصویر کے اندر شمار نہیں ہوتا۔</p>
+  <p class="hadith-en">As per the fatwa of Jamia Darul Taqwa, Lahore, a face has three features: eyes, nose and lips. If any two of them are missing, the figure is not counted as a face in a picture.</p>
+</template>
+
+<div class="detail-overlay" id="detail">
+  <div class="glass detail-box">
+    <button class="detail-close" id="detailClose" aria-label="Close">×</button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<!-- HUB: icon buttons open details below -->
+<section id="hub">
+  <div class="container">
+    <p class="eyebrow">Explore</p>
+    <h2>Tap an <span>icon</span> to explore</h2>
+    <div class="hub-icons">
+      <button class="hub-btn active" data-panel="about"><span class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span><b>About</b></button>
+      <button class="hub-btn" data-panel="profile"><span class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><b>Profile</b></button>
+      <button class="hub-btn" data-panel="services"><span class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><b>Services</b></button>
+    </div>
+
+    <div class="hub-panel active" id="panel-about">
+      <div class="about-wrap">
+        <div class="glass photo-card"><img src="images/profile-shah.jpg" alt="Shah, Creative Director of AURA EDITZ"></div>
+        <div>
+          <p class="eyebrow">A little about me</p>
+          <h2>I am <span>Shah</span></h2>
+          <p class="lead-text">Graphic Designer and Creative Director, and founder of AURA EDITZ. I design complete brands: name, logo, theme, colours, typography and every touchpoint. From Lahore, Pakistan.</p>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="hub-panel" id="panel-profile">
+      <p class="eyebrow">Profile</p>
+      <h2>My <span>Profile</span></h2>
+      <div class="profile-grid">
+        <div class="glass profile-card"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div><h3>Graphic Designer</h3><p>Brand identities, posters, social media creatives, packaging and print design.</p></div>
+        <div class="glass profile-card"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3-3.5 3H16a2 2 0 0 0-1 3.7c.6.4.6 1.3 0 1.8A2 2 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></svg></div><h3>Creative Director</h3><p>Visual direction for brands and projects, from concept to final delivery.</p></div>
+        <div class="glass profile-card"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>UI/UX & Web</h3><p>Modern, clean interfaces and web design focused on usability and clarity.</p></div>
+        <div class="glass profile-card"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div><h3>Calligraphy</h3><p>Arabic and Urdu calligraphy, including Thuluth and Nastaliq, blended into modern design.</p></div>
+      </div>
+      <div class="social">
+        <a class="btn" data-link="facebook" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn" data-link="instagram" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn ghost" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" data-link="freelancer" target="_blank" rel="noopener">Freelancer.com</a>
+        <a class="btn ghost" data-link="whatsappChannel" target="_blank" rel="noopener">WhatsApp Channel</a>
+      </div>
+    </div>
+
+    <div class="hub-panel" id="panel-services">
+      <p class="eyebrow">What we do</p>
+      <h2>Our <span>Services</span></h2>
+      <p class="sub">My core focus is complete brand design: the name, logo, theme and every detail that makes a brand recognisable.</p>
+      <div class="tips">
+        <div class="glass tip"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3-3.5 3H16a2 2 0 0 0-1 3.7c.6.4.6 1.3 0 1.8A2 2 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.2"/><circle cx="12" cy="7" r="1.2"/><circle cx="16.5" cy="10.5" r="1.2"/></svg></div><h3>Complete Brand Design</h3><p>Naming, logo, theme, colour system, typography and every brand touchpoint.</p></div>
+        <div class="glass tip"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></div><h3>Poster & Social Media</h3><p>Posts, posters, flyers and campaign creatives that stop the scroll.</p></div>
+        <div class="glass tip"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>UI/UX & Web</h3><p>Clean interfaces and websites designed for real users.</p></div>
+        <div class="glass tip"><div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div><h3>Calligraphy</h3><p>Thuluth and Nastaliq works for prints, covers and digital use.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 1 -->
+<section class="project" id="quran">
+  <div class="container project-grid">
+    <div class="project-media">
+      <img src="images/quran-dars-poster.jpg" alt="Weekly Quran Dars poster">
+    </div>
+    <div class="glass project-info">
+      <p class="tag">Project 01 · Poster Design</p>
+      <h2>Weekly Quran Dars: <span>Surah An-Nisa</span></h2>
+      <p class="meta">Client: Jamia Masjid Bait-ul-Noor · Role: Graphic Designer</p>
+      <p>A modern poster for a weekly Quran study session held every Sunday after Zuhr. It highlights the key themes of Surah An-Nisa and the session's arrangements for men and women.</p>
+      <a class="btn ghost small" href="https://www.facebook.com/share/p/19e2h2Z36v/" target="_blank" rel="noopener">View Post</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 2 -->
+<section class="project" id="nahlivah">
+  <div class="container project-grid">
+    <div class="project-media">
+      <img src="images/nahlivah-banner.png" alt="NAHLIVAH brand banner">
+      <div class="pair">
+        <img src="images/nahlivah-logo.png" alt="NAHLIVAH logo mark">
+      </div>
+    </div>
+    <div class="glass project-info">
+      <p class="tag">Project 02 · Total Brand Design</p>
+      <h2>NAHLIVAH: <span>Pure Honey Brand</span></h2>
+      <p class="meta">Client: Muhammad Ishaq · Role: Total brand design · Logo, packaging label, banner, DP</p>
+      <p>A complete brand identity for a pure honey company. The logo combines honeycomb hexagons with Arabic letterforms, and the banner carries a Quranic verse on honey and a clear promise of purity.</p>
+      <a class="btn ghost small" href="https://www.facebook.com/profile.php?id=61595472784374" target="_blank" rel="noopener">View Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 3 -->
+<section class="project" id="phentoms">
+  <div class="container project-grid">
+    <div class="project-media">
+      <img src="images/phentoms-logo.png" alt="Phentoms of Lahore logo">
+    </div>
+    <div class="glass project-info">
+      <p class="tag">Project 03 · Logo Design</p>
+      <h2>PHENTOMS OF LAHORE: <span>Car Community</span></h2>
+      <p class="meta">Client: Muhammad Khan · Role: Logo designer · Automotive logo</p>
+      <p>A logo for a car community, built around a red sports car silhouette and a bold white wordmark. The "OF LAHORE" line keeps it rooted in the city.</p>
+      <a class="btn ghost small" href="https://www.instagram.com/phentoms_of_lahore" target="_blank" rel="noopener">View Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT 4 -->
+<section class="project" id="fahm">
+  <div class="container project-grid">
+    <div class="project-media">
+      <img src="images/fahm-e-deen-poster.png" alt="Fahm-e-Deen program poster">
+    </div>
+    <div class="glass project-info">
+      <p class="tag">Project 04 · Program Poster</p>
+      <h2>Fahm-e-Deen: <span>2-Year Islamic Program</span></h2>
+      <p class="meta">Client: Idara Taleemat-e-Deenia · Role: Graphic Designer</p>
+      <p>A poster for a 2-year Islamic education program, highlighting authentic teaching under qualified scholars, an easy-to-follow curriculum, online and in-person options, and research and publication.</p>
+      <a class="btn ghost small" href="https://idarataleematedeenia.org/en/index.html" target="_blank" rel="noopener">Visit Website</a>
+    </div>
+  </div>
+</section>
+
+<div class="soon-wrap">
+  <div class="glass soon-card"><h3>More projects coming soon</h3></div>
+</div>
+
+<!-- OTHER WORKS -->
+<section id="other">
+  <div class="container">
+    <h2>Other <span>Works</span></h2>
+    <p class="sub">Smaller pieces and specialized work.</p>
+    <div class="glass calli-card">
+      <div class="calli">بسم الله الرحمن الرحيم</div>
+      <p>Sample display calligraphy. Replace with your real Thuluth or Nastaliq works later.</p>
+    </div>
+    <div class="profile-grid">
+      <div class="glass profile-card">
+        <div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg></div>
+        <h3>Calligraphy Samples</h3>
+        <p>Thuluth and Nastaliq works. Coming soon.</p>
+      </div>
+      <div class="glass profile-card">
+        <div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
+        <h3>Posters & Flyers</h3>
+        <p>Event, religious and promotional designs. Coming soon.</p>
+      </div>
+      <div class="glass profile-card">
+        <div class="liquid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></div>
+        <h3>Social Media Creatives</h3>
+        <p>Posts, banners and covers for brands. Coming soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="container">
+    <h2>Design <span>Tips</span></h2>
+    <p class="sub">Small habits that make designs look professional.</p>
+    <div class="tips">
+      <div class="glass tip"><div class="num">01</div><h3>Limit your fonts</h3><p>Use one or two typefaces. Pair a bold heading font with a simple body font.</p></div>
+      <div class="glass tip"><div class="num">02</div><h3>Use contrast well</h3><p>Make sure text stands out from the background. Test readability on a phone screen.</p></div>
+      <div class="glass tip"><div class="num">03</div><h3>Leave breathing room</h3><p>White space makes a design feel premium. Do not fill every corner.</p></div>
+      <div class="glass tip"><div class="num">04</div><h3>Build a color system</h3><p>Pick 1 main color, 1 accent and 1 neutral, then stick to them across all work.</p></div>
+      <div class="glass tip"><div class="num">05</div><h3>Align to a grid</h3><p>Consistent margins and alignment make layouts feel organized and intentional.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <h2>Free <span>Tools</span></h2>
+    <p class="sub">Everything below runs in your browser. Your files are not uploaded anywhere.</p>
+
+    <div class="tools-tabs">
+      <button class="tab active" data-tool="age">Age Calculator</button>
+      <button class="tab" data-tool="dp">DP Maker</button>
+      <button class="tab" data-tool="pass">Password Generator</button>
+      <button class="tab" data-tool="prompt">Prompt Builder</button>
+      <button class="tab" data-tool="editor">Image Editor</button>
+    </div>
+
+    <!-- Age -->
+    <div class="glass tool active" id="tool-age">
+      <h3>Age Calculator</h3>
+      <p>Enter your date of birth to see your exact age and days until your next birthday.</p>
+      <div class="row">
+        <div class="field"><label for="dob">Date of birth</label><input type="date" id="dob"></div>
+        <button class="btn" id="calcAge">Calculate</button>
+      </div>
+      <div class="stats" id="ageOut"></div>
+    </div>
+
+    <!-- DP -->
+    <div class="glass tool" id="tool-dp">
+      <h3>DP Maker</h3>
+      <p>Upload a photo, choose a shape and background, add your name, then download a ready DP.</p>
+      <div class="row">
+        <div class="field"><label>Photo</label><input type="file" id="dpFile" accept="image/*"></div>
+        <div class="field"><label>Shape</label>
+          <select id="dpShape"><option value="circle">Circle</option><option value="square">Square</option><option value="rounded">Rounded</option></select></div>
+        <div class="field"><label>Background</label><input type="color" id="dpBg" value="#141414"></div>
+        <div class="field"><label>Ring / accent</label><input type="color" id="dpRing" value="#89e900"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Name text (optional)</label><input type="text" id="dpText" placeholder="e.g. Qussam · AURA EDITZ"></div>
+        <button class="btn" id="dpDownload">Download PNG</button>
+      </div>
+      <canvas id="dpCanvas" width="800" height="800"></canvas>
+    </div>
+
+    <!-- Password -->
+    <div class="glass tool" id="tool-pass">
+      <h3>Strong Password Generator</h3>
+      <p>Creates random passwords using your browser's secure random generator.</p>
+      <div class="row">
+        <div class="field" style="flex:2"><label>Length: <b id="pLenVal">16</b></label><input type="range" id="pLen" min="8" max="64" value="16"></div>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="pUp" checked> Uppercase</label>
+        <label><input type="checkbox" id="pLow" checked> Lowercase</label>
+        <label><input type="checkbox" id="pNum" checked> Numbers</label>
+        <label><input type="checkbox" id="pSym" checked> Symbols</label>
+      </div>
+      <div class="row">
+        <button class="btn" id="genPass">Generate</button>
+        <button class="btn ghost" id="copyPass">Copy</button>
+      </div>
+      <div class="out" id="passOut">Click Generate</div>
+      <div class="meter"><div id="passMeter"></div></div>
+      <p id="passLabel" style="color:var(--muted);font-size:.85rem;margin-top:6px"></p>
+    </div>
+
+    <!-- Prompt -->
+    <div class="glass tool" id="tool-prompt">
+      <h3>Prompt Builder</h3>
+      <p>Fill in a few details and get a detailed, well-structured prompt for AI image or design tools like Midjourney, Stitch, Canva AI or ChatGPT.</p>
+      <div class="row">
+        <div class="field"><label>What to create</label>
+          <select id="prType">
+            <option>Logo design</option><option>Social media post</option><option>Poster</option>
+            <option>YouTube thumbnail</option><option>Website UI screen</option><option>Eid / Ramadan post</option>
+          </select></div>
+        <div class="field"><label>Visual style</label>
+          <select id="prStyle">
+            <option>Modern glassmorphism</option><option>Minimal flat</option><option>Neon glow</option>
+            <option>Luxury gold</option><option>Islamic geometric</option><option>Bold typography</option>
+          </select></div>
+        <div class="field"><label>Mood</label>
+          <select id="prMood"><option>Premium and professional</option><option>Calm and spiritual</option><option>Energetic and youthful</option><option>Clean and trustworthy</option></select></div>
+      </div>
+      <div class="field" style="margin-bottom:14px"><label>Subject / details</label><textarea id="prSubj" rows="3" placeholder="e.g. A design studio logo with a lime green A and E letters on a dark background"></textarea></div>
+      <div class="row"><button class="btn" id="buildPrompt">Build Prompt</button><button class="btn ghost" id="copyPrompt">Copy</button></div>
+      <div class="out" id="promptOut">Your prompt will appear here.</div>
+    </div>
+
+    <!-- Editor -->
+    <div class="glass tool" id="tool-editor">
+      <h3>Basic Image Editor</h3>
+      <p>Upload an image to crop it to a square, adjust filters, rotate and add text. Download when done.</p>
+      <div class="row">
+        <div class="field"><label>Image</label><input type="file" id="edFile" accept="image/*"></div>
+        <button class="btn ghost" id="edRotate">Rotate 90°</button>
+        <button class="btn ghost" id="edSquare">Crop Square</button>
+        <button class="btn" id="edDownload">Download</button>
+      </div>
+      <div class="row">
+        <div class="field"><label>Brightness: <b id="bVal">100</b>%</label><input type="range" id="edB" min="0" max="200" value="100"></div>
+        <div class="field"><label>Contrast: <b id="cVal">100</b>%</label><input type="range" id="edC" min="0" max="200" value="100"></div>
+        <div class="field"><label>Saturation: <b id="sVal">100</b>%</label><input type="range" id="edS" min="0" max="200" value="100"></div>
+        <div class="field"><label>Grayscale: <b id="gVal">0</b>%</label><input type="range" id="edG" min="0" max="100" value="0"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Text overlay</label><input type="text" id="edText" placeholder="Type text to add"></div>
+        <div class="field" style="max-width:90px"><label>Size</label><input type="number" id="edSize" value="48" min="10" max="200"></div>
+        <div class="field" style="max-width:80px"><label>Color</label><input type="color" id="edTColor" value="#89e900"></div>
+        <button class="btn ghost" id="edReset">Reset Filters</button>
+      </div>
+      <canvas id="edCanvas" width="600" height="600"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="container">
+    <p class="eyebrow">Stay connected</p>
+    <h2>Join the <span>Community</span></h2>
+    <p class="sub">One click takes you to any of my channels.</p>
+    <div class="social-grid">
+      <a class="glass social-btn" data-link="whatsappChannel" target="_blank" rel="noopener"><span>💬</span>WhatsApp Channel</a>
+      <a class="glass social-btn" data-link="facebook" target="_blank" rel="noopener"><span>f</span>Facebook</a>
+      <a class="glass social-btn" data-link="instagram" target="_blank" rel="noopener"><span>◎</span>Instagram</a>
+      <a class="glass social-btn" data-link="linkedin" target="_blank" rel="noopener"><span>in</span>LinkedIn</a>
+      <a class="glass social-btn" data-link="freelancer" target="_blank" rel="noopener"><span>⚡</span>Freelancer.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's <span>Work</span> Together</h2>
+      <p class="sub">Tell me about your project. Your email app will open with your message ready, and you just press send.</p>
+      <p class="sub">Direct: <a href="mailto:contactauraeditz2010@gmail.com" style="color:var(--accent)">contactauraeditz2010@gmail.com</a></p>
+    </div>
+    <div class="glass contact-form">
+      <div class="field"><label for="cName">Your name</label><input type="text" id="cName" placeholder="How should we address you?"></div>
+      <div class="field"><label for="cEmail">Email address</label><input type="text" id="cEmail" placeholder="you@example.com"></div>
+      <div class="field"><label for="cService">What do you need?</label>
+        <select id="cService">
+          <option>Graphic Design</option><option>Logo Design</option><option>Brand Identity</option>
+          <option>Poster & Social Media</option><option>UI/UX & Web</option><option>Calligraphy</option>
+          <option>Other</option>
+        </select></div>
+      <div class="field"><label for="cMsg">Project details</label><textarea id="cMsg" rows="5" placeholder="Tell me a little about your project..."></textarea></div>
+      <button class="btn" id="sendInquiry" type="button">Prepare inquiry email ↗</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="yr"></span> Shah · Powered by <b>AURA EDITZ</b>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+/* ---------- Links: put your real links here ---------- */
+const LINKS = {
+  whatsappChannel: "https://whatsapp.com/channel/0029VbDOPIH72WTqRMn4TP09",
+  facebook: "https://www.facebook.com/profile.php?id=61578050860088",
+  instagram: "https://www.instagram.com/auraeditz.2010",
+  linkedin: "https://www.linkedin.com/in/aura-editz-b213463b7",
+  freelancer: "https://www.freelancer.com/get/auraeditz2010?f=give"
+};
+document.querySelectorAll("[data-link]").forEach(a => a.href = LINKS[a.dataset.link]);
+$("yr").textContent = new Date().getFullYear();
+
+/* ---------- Theme (dark / light) ---------- */
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme", t);
+  $("themeBtn").textContent = t === "light" ? "☀️" : "🌙";
+}
+let savedTheme = "dark";
+try { savedTheme = localStorage.getItem("ae-theme") || "dark"; } catch(e){}
+applyTheme(savedTheme);
+$("themeBtn").onclick = () => {
+  const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+  applyTheme(next);
+  try { localStorage.setItem("ae-theme", next); } catch(e){}
+};
+
+/* ---------- Tool tabs ---------- */
+document.querySelectorAll(".tab").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tool").forEach(t => t.classList.remove("active"));
+    btn.classList.add("active");
+    $("tool-" + btn.dataset.tool).classList.add("active");
+  };
+});
+
+/* ---------- Age calculator ---------- */
+$("calcAge").onclick = () => {
+  const v = $("dob").value;
+  if (!v) { $("ageOut").innerHTML = '<p style="color:var(--muted)">Please select a date.</p>'; return; }
+  const [Y, M, D] = v.split("-").map(Number);
+  const birth = new Date(Y, M - 1, D), now = new Date();
+  if (birth > now) { $("ageOut").innerHTML = '<p style="color:var(--muted)">Date is in the future.</p>'; return; }
+  let years = now.getFullYear() - birth.getFullYear();
+  let months = now.getMonth() - birth.getMonth();
+  let days = now.getDate() - birth.getDate();
+  if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if (months < 0) { years--; months += 12; }
+  const totalDays = Math.floor((now - birth) / 86400000);
+  let next = new Date(now.getFullYear(), M - 1, D);
+  if (next <= now) next.setFullYear(now.getFullYear() + 1);
+  const toNext = Math.ceil((next - now) / 86400000);
+  $("ageOut").innerHTML = `
+    <div class="stat"><b>${years}</b><small>Years</small></div>
+    <div class="stat"><b>${months}</b><small>Months</small></div>
+    <div class="stat"><b>${days}</b><small>Days</small></div>
+    <div class="stat"><b>${totalDays.toLocaleString()}</b><small>Total days lived</small></div>
+    <div class="stat"><b>${toNext}</b><small>Days to next birthday</small></div>`;
+};
+
+/* ---------- DP maker (real canvas, no AI) ---------- */
+const dpCanvas = $("dpCanvas"), dpCtx = dpCanvas.getContext("2d");
+let dpImg = null;
+function drawDP(){
+  const W = dpCanvas.width, H = dpCanvas.height, shape = $("dpShape").value, ring = $("dpRing").value;
+  dpCtx.clearRect(0,0,W,H);
+  dpCtx.fillStyle = $("dpBg").value; dpCtx.fillRect(0,0,W,H);
+  const pad = 80, size = W - pad*2;
+  dpCtx.save();
+  dpCtx.beginPath();
+  if (shape === "circle") dpCtx.arc(W/2, H/2 - 30, size/2, 0, Math.PI*2);
+  else dpCtx.roundRect(pad, pad - 30, size, size, shape === "rounded" ? 90 : 0);
+  dpCtx.clip();
+  if (dpImg) {
+    const s = Math.max(size / dpImg.width, size / dpImg.height);
+    const w = dpImg.width * s, h = dpImg.height * s;
+    dpCtx.drawImage(dpImg, pad + (size - w)/2, pad - 30 + (size - h)/2, w, h);
+  } else {
+    dpCtx.fillStyle = "#222"; dpCtx.fillRect(0,0,W,H);
+  }
+  dpCtx.restore();
+  dpCtx.lineWidth = 16; dpCtx.strokeStyle = ring;
+  dpCtx.beginPath();
+  if (shape === "circle") dpCtx.arc(W/2, H/2 - 30, size/2, 0, Math.PI*2);
+  else dpCtx.roundRect(pad, pad - 30, size, size, shape === "rounded" ? 90 : 0);
+  dpCtx.stroke();
+  const txt = $("dpText").value.trim();
+  if (txt) {
+    dpCtx.fillStyle = ring; dpCtx.font = "bold 46px Segoe UI, Arial, sans-serif";
+    dpCtx.textAlign = "center"; dpCtx.fillText(txt, W/2, H - 40);
+  }
+}
+$("dpFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const img = new Image();
+  img.onload = () => { dpImg = img; drawDP(); };
+  img.src = URL.createObjectURL(f);
+};
+["dpShape","dpBg","dpRing","dpText"].forEach(id => $(id).addEventListener("input", drawDP));
+$("dpDownload").onclick = () => {
+  const a = document.createElement("a");
+  a.download = "dp.png"; a.href = dpCanvas.toDataURL("image/png"); a.click();
+};
+drawDP();
+
+/* ---------- Password generator (secure random) ---------- */
+const UP="ABCDEFGHIJKLMNOPQRSTUVWXYZ", LOW="abcdefghijklmnopqrstuvwxyz",
+      NUM="0123456789", SYM="!@#$%^&*()-_=+[]{};:,.<>?";
+$("pLen").oninput = () => $("pLenVal").textContent = $("pLen").value;
+function genPassword(){
+  let chars = "";
+  if ($("pUp").checked) chars += UP;
+  if ($("pLow").checked) chars += LOW;
+  if ($("pNum").checked) chars += NUM;
+  if ($("pSym").checked) chars += SYM;
+  if (!chars) { $("passOut").textContent = "Select at least one option"; return; }
+  const len = +$("pLen").value, arr = new Uint32Array(len);
+  crypto.getRandomValues(arr);
+  const pw = Array.from(arr, n => chars[n % chars.length]).join("");
+  $("passOut").textContent = pw;
+  let score = Math.min(len / 24, 1) * 50;
+  const types = [$("pUp"),$("pLow"),$("pNum"),$("pSym")].filter(c => c.checked).length;
+  score += (types / 4) * 50;
+  $("passMeter").style.width = score + "%";
+  $("passLabel").textContent = score > 80 ? "Strength: Very strong" : score > 55 ? "Strength: Strong" : "Strength: Medium";
+}
+$("genPass").onclick = genPassword;
+$("copyPass").onclick = () => navigator.clipboard?.writeText($("passOut").textContent);
+genPassword();
+
+/* ---------- Prompt builder (structured, no fake AI) ---------- */
+function buildPrompt(){
+  const subj = $("prSubj").value.trim() || "a professional design";
+  const p = `Create a ${$("prType").value.toLowerCase()} of ${subj}.
+Visual style: ${$("prStyle").value}, with frosted glass cards, soft blur, clean spacing and smooth gradients.
+Mood: ${$("prMood").value}.
+Color palette: dark background #141414, primary accent #89e900 (lime green), text #ffffff. Keep the palette consistent.
+Typography: bold modern sans-serif headings, clean readable body text, no broken or cramped letters.
+Composition: clear hierarchy, generous white space, one focal point, balanced alignment.
+Quality: high resolution, sharp edges, no watermarks, no extra unreadable text.`;
+  $("promptOut").textContent = p;
+}
+$("buildPrompt").onclick = buildPrompt;
+$("copyPrompt").onclick = () => navigator.clipboard?.writeText($("promptOut").textContent);
+
+/* ---------- Image editor (real canvas filters) ---------- */
+const edCanvas = $("edCanvas"), edCtx = edCanvas.getContext("2d");
+let edOrig = null, edRot = 0, edSquare = false;
+function renderEditor(){
+  if (!edOrig) return;
+  const rotated = edRot % 180 !== 0;
+  let sw = rotated ? edOrig.height : edOrig.width;
+  let sh = rotated ? edOrig.width : edOrig.height;
+  let sx = 0, sy = 0, cw = edOrig.width, ch = edOrig.height;
+  // crop-to-square uses the center square of the original
+  if (edSquare) {
+    const m = Math.min(edOrig.width, edOrig.height);
+    sx = (edOrig.width - m)/2; sy = (edOrig.height - m)/2; cw = m; ch = m;
+    sw = sh = m;
+    if (rotated) { /* swap handled by canvas rotation below */ }
+  }
+  const maxSide = 900, scale = Math.min(1, maxSide / Math.max(sw, sh));
+  edCanvas.width = Math.round(sw * scale); edCanvas.height = Math.round(sh * scale);
+  const W = edCanvas.width, H = edCanvas.height;
+  edCtx.clearRect(0,0,W,H);
+  edCtx.save();
+  edCtx.translate(W/2, H/2);
+  edCtx.rotate(edRot * Math.PI / 180);
+  const dw = rotated ? H : W, dh = rotated ? W : H;
+  edCtx.filter = `brightness(${$("edB").value}%) contrast(${$("edC").value}%) saturate(${$("edS").value}%) grayscale(${$("edG").value}%)`;
+  edCtx.drawImage(edOrig, sx, sy, cw, ch, -dw/2, -dh/2, dw, dh);
+  edCtx.restore();
+  edCtx.filter = "none";
+  const txt = $("edText").value;
+  if (txt) {
+    const size = Math.round(+$("edSize").value * scale);
+    edCtx.font = `bold ${size}px Segoe UI, Arial, sans-serif`;
+    edCtx.textAlign = "center"; edCtx.lineWidth = Math.max(4, size/10);
+    edCtx.strokeStyle = "rgba(0,0,0,.6)"; edCtx.fillStyle = $("edTColor").value;
+    edCtx.strokeText(txt, W/2, H - size*0.6); edCtx.fillText(txt, W/2, H - size*0.6);
+  }
+}
+$("edFile").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const img = new Image();
+  img.onload = () => { edOrig = img; edRot = 0; edSquare = false; renderEditor(); };
+  img.src = URL.createObjectURL(f);
+};
+$("edRotate").onclick = () => { edRot = (edRot + 90) % 360; renderEditor(); };
+$("edSquare").onclick = () => { edSquare = !edSquare; renderEditor(); };
+["edB","edC","edS","edG"].forEach(id => $(id).addEventListener("input", () => {
+  const map = {edB:"bVal",edC:"cVal",edS:"sVal",edG:"gVal"};
+  $(map[id]).textContent = $(id).value; renderEditor();
+}));
+["edText","edSize","edTColor"].forEach(id => $(id).addEventListener("input", renderEditor));
+$("edReset").onclick = () => {
+  ["edB","edC","edS"].forEach(id => $(id).value = 100);
+  $("edG").value = 0;
+  $("bVal").textContent = $("cVal").textContent = $("sVal").textContent = 100;
+  $("gVal").textContent = 0; renderEditor();
+};
+$("edDownload").onclick = () => {
+  if (!edOrig) return;
+  const a = document.createElement("a");
+  a.download = "edited.png"; a.href = edCanvas.toDataURL("image/png"); a.click();
+};
+
+$("enterBtn").onclick = () => {
+  $("intro").classList.add("leave");
+  setTimeout(() => $("intro").classList.add("gone"), 900);
+};
+
+$("sendInquiry").onclick = () => {
+  const n = $("cName").value.trim(), e = $("cEmail").value.trim(), sv = $("cService").value, m = $("cMsg").value.trim();
+  if (!n || !e || !m) { alert("Please fill in your name, email and project details."); return; }
+  const subject = encodeURIComponent("Project inquiry: " + sv + " - " + n);
+  const body = encodeURIComponent("Name: " + n + "\nEmail: " + e + "\nService: " + sv + "\n\nProject details:\n" + m);
+  location.href = "mailto:contactauraeditz2010@gmail.com?subject=" + subject + "&body=" + body;
+};
+document.querySelectorAll("[data-panel]").forEach(el => el.addEventListener("click", e => {
+  e.preventDefault();
+  const name = el.dataset.panel;
+  document.querySelectorAll(".hub-btn").forEach(b => b.classList.toggle("active", b.dataset.panel === name));
+  document.querySelectorAll(".hub-panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + name));
+  document.getElementById("hub").scrollIntoView({behavior: "smooth"});
+}));
+document.querySelectorAll("[data-link]").forEach(a => { if (!a.href || a.href.endsWith("/")) a.href = LINKS[a.dataset.link]; });
+document.querySelectorAll("[data-detail]").forEach(btn => btn.addEventListener("click", () => {
+  const t = document.getElementById("t-" + btn.dataset.detail);
+  document.getElementById("detailBody").innerHTML = t.innerHTML;
+  document.getElementById("detail").classList.add("open");
+}));
+function closeDetail(){ document.getElementById("detail").classList.remove("open"); }
+document.getElementById("detailClose").onclick = closeDetail;
+document.getElementById("detail").addEventListener("click", e => { if (e.target.id === "detail") closeDetail(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); });
+document.getElementById("openDetail").onclick = () => {
+  document.getElementById("detailBody").innerHTML = document.getElementById("t-main").innerHTML;
+  document.getElementById("detail").classList.add("open");
+};
+</script>
+</body>
+</html>
